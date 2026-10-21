@@ -7,6 +7,7 @@
 #include <esp_gap_ble_api.h>
 #include <esp_gatts_api.h>
 #ifdef USE_ESP32_FRAMEWORK_ARDUINO
+#include "esp_wifi.h"
 #endif
 
 namespace esphome
@@ -16,8 +17,9 @@ namespace esphome
 
     void LampSmartProFan::setup()
     {
-      register_service(&LampSmartProFan::on_pair, "pair_" + this->get_object_id());
-      register_service(&LampSmartProFan::on_unpair, "unpair_" + this->get_object_id());
+     std::string obj_id = str_sanitize(str_snake_case(std::string(this->get_name().c_str())));
+    register_service(&LampSmartProFan::on_pair, "pair_" + obj_id);
+    register_service(&LampSmartProFan::on_unpair, "unpair_" + obj_id);
     }
 
     fan::FanTraits LampSmartProFan::get_traits()
