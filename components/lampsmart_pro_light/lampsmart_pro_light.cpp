@@ -17,7 +17,7 @@ namespace esphome
 
     void LampSmartProLight::setup()
     {
-      std::string suffix = std::to_string(this->group_);
+      std::string suffix = std::to_string(this->group_id_);
       register_service(&LampSmartProLight::on_pair, "pair_light_" + suffix);
       register_service(&LampSmartProLight::on_unpair, "unpair_light_" + suffix);
     }
