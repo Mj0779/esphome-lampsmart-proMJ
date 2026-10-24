@@ -17,9 +17,9 @@ namespace esphome
 
     void LampSmartProLight::setup()
     {
-      std::string obj_id = str_sanitize(str_snake_case(std::string(this->get_name().c_str())));
-      register_service(&LampSmartProLight::on_pair, "pair_light");
-      register_service(&LampSmartProLight::on_unpair, "unpair_light");
+      std::string suffix = std::to_string(this->group_);
+      register_service(&LampSmartProLight::on_pair, "pair_light_" + suffix);
+      register_service(&LampSmartProLight::on_unpair, "unpair_light_" + suffix);
     }
 
     light::LightTraits LampSmartProLight::get_traits()
